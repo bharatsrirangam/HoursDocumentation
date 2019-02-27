@@ -23,9 +23,9 @@ Here is how to actually use these aliases:
 *In Terminal*
 
 ```
-hours 2.0 // Logs 2 hours for today (with the date) in your hours.txt file (created if orignally non-existent)
-viewhours // Loads your hours.txt file in a vim view to see how many hours you currently have
-clearhours // Clears the total count for the week from your hours.txt file and creates a new section in the hours.txt file for new hours (useful for biweekly pay periods)
+$ hours 2.0 // Logs 2 hours for today (with the date) in your hours.txt file (created if orignally non-existent)
+$ viewhours // Loads your hours.txt file in a vim view to see how many hours you currently have
+$ clearhours // Clears the total count for the week from your hours.txt file and creates a new section in the hours.txt file for new hours (useful for biweekly pay periods)
 ```
 
 ### Installing
