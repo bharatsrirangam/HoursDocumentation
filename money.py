@@ -2,20 +2,21 @@ import os
 import datetime as dt
 import sys
 
-hours_txt_path = '/Users/Bharat_Srirangam/Desktop/HoursDocumentation/hours.txt'
+money_txt_path = '/Users/Bharat_Srirangam/Desktop/HoursDocumentation/money.txt'
 
 args = sys.argv
 def check_exists():
-	exists = os.path.isfile(hours_txt_path)
+	exists = os.path.isfile(money_txt_path)
 	if not exists:
-		print('does not exist')
-		file = open(hours_txt_path,'w')
-		file.write('Current Hours: \n0.0\n======================')
+		print('Does not exist')
+		file = open(money_txt_path,'w')
+		file.write('Current Account: \n0.0\n=================================\n')
 		file.close()
 
 def main():
+	check_exists()
 	stringdate = str(dt.date.today())
-	file = open(hours_txt_path, 'r')
+	file = open(money_txt_path, 'r')
 	temp = file.read()
 	split_unclean = temp.split('\n')
 	split = []
@@ -45,22 +46,22 @@ def main():
 				element = split[i].split(': ')
 				if element[0] == stringdate:
 					isTrue = True
-					split[i] = stringdate + ': ' + str((float(element[1]) + float(args[2])))
+					split[i] = stringdate + ': ' + str((float(element[1]) + float(args[2]))) + ' : ' + element[2]
 					break
 		count = count + float(args[2])
 		split[1] = str(count)
 		content = '\n'.join(split)
 		if not isTrue: 
-			content = content + '\n' + stringdate + ': ' + str(args[2])
+			content = content + '\n' + stringdate + ': ' + str(args[2]) + ' : ' + 'Unknown Purchase'
 	else:
 		count = count + float(args[1])
 		split[1] = str(count)
 		content = '\n'.join(split)
-		content = content + '\n' + stringdate + ': ' + str(args[1])
+		content = content + '\n' + stringdate + ': ' + str(args[1]) + ' : ' + args[2]
 		
-	file = open(hours_txt_path, 'w')
+	file = open(money_txt_path, 'w')
 	file.write(content)
 	file.close()
-	print('Your total accumulated hours is: ' + str(count))
+	print('Your total accumulated payments is: ' + str(count))
 
 main()
